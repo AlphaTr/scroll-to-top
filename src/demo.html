@@ -55,6 +55,35 @@
     border-radius: 8px;
     font-size: 72px;
 }
+#alpha-sttb {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+
+    /* 位置信息 */
+    bottom: 20px;
+    right: 20px;
+    border-radius: 5px;
+
+    overflow: hidden;
+    text-align: center;
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    opacity: .8;
+}
+#alpha-sttb:after {
+    content: '\e600';
+    font-size: 50px;
+    line-height: 50px;
+    color: #789;
+}
 </style>
 <body>
     <div class="main clearfix">
@@ -62,5 +91,6 @@
         <div class="type2">&#58881;</div>
         <div class="type3">&#58882;</div>
     </div>
+    <div id="alpha-sttb" style=""></div>
 </body>
 </html>
