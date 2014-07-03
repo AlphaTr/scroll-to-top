@@ -1,13 +1,21 @@
 (function ($) {
+    $.easing.swing = function (x, t, b, c, d) {
+        if ((t /= d / 2) < 1) {
+            return c / 2 * t * t + b;
+        }
+        return -c / 2 * ((--t) * (t - 2) - 1) + b;
+    };
+
     var $win = $(window),
         scrollToTop = function (el, options) {
             var defaults = {
-                speed: "slow",
-                ease: "jswing",
-                start: 0,
-                transparency: 0,
-                distance: $(window).height()
-            };
+                    speed: "slow",
+                    ease: "swing",
+                    start: 0,
+                    transparency: 0,
+                    distance: $(window).height()
+                },
+                _ = this;
 
             this.inProgress = false;
             this.el = el;
@@ -15,8 +23,12 @@
             this.opt = $.extend(defaults, options || {});
 
             this.init();
-            $(el).on('click', this.onClick);
-            $win.on('scroll', this.onScroll);
+            $(el).on('click', function () {
+                _.onClick();
+            });
+            $win.on('scroll', function () {
+                _.onScroll();
+            });
         };
 
     $.extend(scrollToTop.prototype, {
@@ -24,11 +36,10 @@
             var _ = this,
                 $e = $(_.el);
 
-            $e.hide();
             _.direction = _.rotate($e, _.opt.distance);
 
             if ($win.scrollTop() >= _.opt.start) {
-                $e.fadeIn("slow");
+                $e.addClass("fade");
             }
 
             _.inProgress = false;
@@ -44,11 +55,11 @@
             } else if (_.direction === "up") {
                 _.inProgress = true;
                 _.scrollUp(o.speed, o.ease);
-                $e.fadeTo("medium", o.transparency);
+                $e.removeClass("fade");
             } else if (_.direction === "down") {
-                _.inProgress = "yes";
+                _.inProgress = true;
                 _.scrollDown(o.speed, o.ease);
-                $e.fadeTo("medium", o.transparency);
+                $e.removeClass("fade");
             }
         },
         onScroll: function () {
@@ -56,15 +67,13 @@
                 o = _.opt,
                 $e = $(_.el);
 
-            $win.on('scroll', function () {
-                if ($win.scrollTop() >= o.start) {
-                    $e.fadeIn("slow");
-                } else {
-                    $e.fadeOut("slow");
-                }
+            if ($win.scrollTop() >= o.start) {
+                $e.addClass("fade");
+            } else {
+                $e.removeClass("fade");
+            }
 
-                _.direction = _.rotate($e, o.distance);
-            });
+            _.direction = _.rotate($e, o.distance);
         },
         scrollUp: function () {
             var _ = this;
@@ -82,14 +91,10 @@
         rotate: function () {
             var _ = this;
             if ($win.scrollTop() >= _.opt.distance) {
-                $(_.el).rotate({
-                    animateTo: 0
-                });
+                $(_.el).addClass('rotate');
                 return "up";
             } else {
-                $(_.el).rotate({
-                    animateTo: -180
-                });
+                $(_.el).removeClass('rotate');
                 return "down";
             }
         }
