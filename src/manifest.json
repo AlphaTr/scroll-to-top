@@ -12,7 +12,7 @@
     "content_scripts": [{
             "matches": ["*://*/*"],
             "css": ["page/page.css"],
-            "js": ["lib/jquery-2.0.0.min.js", "page/page.js"],
+            "js": ["lib/jquery-2.0.0.min.js", "lib/jquery.scroll.js", "page/page.js"],
             "all_frames": true
         }
     ],

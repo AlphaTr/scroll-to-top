@@ -2,7 +2,6 @@
 "use strict";
 (function (window, chrome, undefined) {
     var runtime = chrome.runtime,
-        inited,
         url = location.href,
         messageSender = function (action) {
             var params = Array.prototype.slice.call(arguments, 1),
@@ -24,24 +23,20 @@
         },
 
         render = function (msg) {
-            console.log(msg);
             if (msg.action === 'render' && msg.html) {
+                $('body').find(msg.selector).remove();
                 $('body').append(msg.html);
-                if (!inited) {
-                    $('body').on('click', msg.selector, function () {
-
-                    });
-                    inited = true;
-                }
+                // console.log($('body').find(msg.selector));
+                $('body').find(msg.selector).scrollToTop();
             }
         };
 
     runtime.onMessage.addListener(render);
 
-    if ((window == top) && ($(window).height() < $(document).height())) {
+    if ((window === top) && ($(window).height() < $(document).height())) {
         messageSender('get', {url: url}, render);
     } else {
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
             messageSender('get', {url: url}, render);
             $(window).off('scroll');
         });

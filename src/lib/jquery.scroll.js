@@ -1,34 +1,6 @@
 (function ($) {
-    var inProgress = false,
-        $win = $(window),
-        scrollUp = function (speed, ease) {
-            $("html, body").animate({scrollTop: 0}, speed, ease, function () {
-                inProgress = false;
-            });
-        },
-        scrollDown = function (speed, ease) {
-            var height = $(document).height();
-            $("html, body").animate({scrollTop: height}, speed, ease, function () {
-                inProgress = false;
-            });
-        },
-        rotate = function (element, distance) {
-            if ($win.scrollTop() >= distance) {
-                element.rotate({
-                    animateTo: 0
-                });
-                return "up";
-            } else {
-                element.rotate({
-                    animateTo: -180
-                });
-                return "down";
-            }
-        };
-
-
-    $.fn.extend({
-        scrollToTop: function (options) {
+    var $win = $(window),
+        scrollToTop = function (el, options) {
             var defaults = {
                 speed: "slow",
                 ease: "jswing",
@@ -37,47 +9,95 @@
                 distance: $(window).height()
             };
 
-            options = $.extend(defaults, options || {});
-            return this.each(function () {
-                var o = options,
-                    direction,
-                    $scroll = $(this);
+            this.inProgress = false;
+            this.el = el;
+            this.direction = 'up';
+            this.opt = $.extend(defaults, options || {});
 
-                // 初始化
-                $scroll.hide();
-                direction = rotate($scroll, o.distance);
+            this.init();
+            $(el).on('click', this.onClick);
+            $win.on('scroll', this.onScroll);
+        };
 
+    $.extend(scrollToTop.prototype, {
+        init: function () {
+            var _ = this,
+                $e = $(_.el);
+
+            $e.hide();
+            _.direction = _.rotate($e, _.opt.distance);
+
+            if ($win.scrollTop() >= _.opt.start) {
+                $e.fadeIn("slow");
+            }
+
+            _.inProgress = false;
+        },
+        onClick: function () {
+            var _ = this,
+                o = _.opt,
+                $e = $(_.el);
+
+            if (_.inProgress) {
+                $("html, body").stop();
+                _.inProgress = false;
+            } else if (_.direction === "up") {
+                _.inProgress = true;
+                _.scrollUp(o.speed, o.ease);
+                $e.fadeTo("medium", o.transparency);
+            } else if (_.direction === "down") {
+                _.inProgress = "yes";
+                _.scrollDown(o.speed, o.ease);
+                $e.fadeTo("medium", o.transparency);
+            }
+        },
+        onScroll: function () {
+            var _ = this,
+                o = _.opt,
+                $e = $(_.el);
+
+            $win.on('scroll', function () {
                 if ($win.scrollTop() >= o.start) {
-                    $scroll.fadeIn("slow");
+                    $e.fadeIn("slow");
+                } else {
+                    $e.fadeOut("slow");
                 }
-                inProgress = false;
 
-                // 滚动事件
-                $win.on('scroll', function () {
-                    if ($win.scrollTop() >= o.start) {
-                        $scroll.fadeIn("slow");
-                    } else {
-                        $scroll.fadeOut("slow");
-                    }
-
-                    direction = rotate($scroll, o.distance);
-                });
-
-                $scroll.on('click', function () {
-                    if (inProgress) {
-                        $("html, body").stop();
-                        inProgress = false;
-                    } else if (direction === "up") {
-                        inProgress = true;
-                        scrollUp(o.speed, o.ease);
-                        $scroll.fadeTo("medium", o.transparency);
-                    } else if (direction === "down") {
-                        inProgress = "yes";
-                        scrollDown(o.speed, o.ease);
-                        $scroll.fadeTo("medium", o.transparency);
-                    }
-                });
+                _.direction = _.rotate($e, o.distance);
             });
+        },
+        scrollUp: function () {
+            var _ = this;
+            $("html, body").animate({scrollTop: 0}, _.opt.speed, _.opt.ease, function () {
+                _.inProgress = false;
+            });
+        },
+        scrollDown: function () {
+            var height = $(document).height(),
+                _ = this;
+            $("html, body").animate({scrollTop: height}, _.opt.speed, _.opt.ease, function () {
+                _.inProgress = false;
+            });
+        },
+        rotate: function () {
+            var _ = this;
+            if ($win.scrollTop() >= _.opt.distance) {
+                $(_.el).rotate({
+                    animateTo: 0
+                });
+                return "up";
+            } else {
+                $(_.el).rotate({
+                    animateTo: -180
+                });
+                return "down";
+            }
         }
     });
+
+    $.fn.scrollToTop = function (options) {
+        return this.each(function () {
+            new scrollToTop(this, options);
+        });
+    };
 }(jQuery));
