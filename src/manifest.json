@@ -11,7 +11,6 @@
     },
     "content_scripts": [{
             "matches": ["*://*/*"],
-            "css": ["page/page.css"],
             "js": ["lib/jquery-2.0.0.min.js", "lib/jquery.scroll.js", "page/page.js"],
             "all_frames": true
         }
@@ -29,5 +28,8 @@
         "128": "icons/icon-128.png",
         "256": "icons/icon-128@2.png"
     },
-    "options_page": "options/index.html"
+    "options_page": "options/index.html",
+    "web_accessible_resources": [
+        "page/alpha-sttb.*"
+    ]
 }
