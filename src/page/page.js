@@ -26,7 +26,7 @@
             if (msg.action === 'render' && msg.html) {
                 $('body').find(msg.selector).remove();
                 $('body').append(msg.html);
-                $('body').find(msg.selector).scrollToTop({start: $(window).height() * 1.2});
+                $('body').find(msg.selector).scrollToTop();
             }
         };
 
