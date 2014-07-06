@@ -1,0 +1,87 @@
+<!doctype html>
+<html dir="ltr" lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Scroll To Top 选项</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="doc">
+    <div id="doc-hd" class="hd">
+        <div class="wrap clearfix">
+            <div class="logo"></div>
+            <h1>Scroll To Top 选项</h1>
+            <nav>
+                <a href="#base-setting">基本设置</a>
+                <a href="#advanced-setting">高级设置</a>
+            </nav>
+        </div>
+    </div>
+    <div id="doc-bd" class="bd wrap">
+        <div id="base">
+            <div class="pos">
+                <h2>按钮位置</h2>
+                <table cellspacing="4"><tbody>
+                    <tr>
+                        <td class="cell cell-on" title="左上角" data-key="tl"></td>
+                        <td class="cell" title="" data-key=""></td>
+                        <td class="cell" title="" data-key=""></td>
+                    </tr>
+                    <tr>
+                        <td class="cell" title="" data-key=""></td>
+                        <td></td>
+                        <td class="cell" title="" data-key=""></td>
+                    </tr>
+                    <tr>
+                        <td class="cell" title="" data-key=""></td>
+                        <td class="cell" title="" data-key=""></td>
+                        <td class="cell" title="右下角" data-key="br"></td>
+                    </tr>
+                </tbody></table>
+                <p>显示在窗口：<span>右下角</span></p>
+            </div>
+            <div class="color">
+                <h2>按钮颜色</h2>
+                <table><tbody>
+                    <tr>
+                        <td data-color="#AAA"></td>
+                        <td data-color="#345"></td>
+                        <td data-color="#345"></td>
+                        <td data-color="#345"></td>
+                    </tr>
+                    <tr>
+                        <td data-color="#345"></td>
+                        <td data-color="#345"></td>
+                        <td data-color="#345"></td>
+                        <td data-color="#345"></td>
+                    </tr>
+                </tbody></table>
+                <p>自定义颜色：<input type="color"/><span></span></p>
+            </div>
+            <div class="type">
+                <h2>按钮样式</h2>
+                <ul class="clearfix">
+                    <li class="on"><span class="type1"></span></li>
+                    <li><span class="type2"></span></li>
+                    <li><span class="type3"></span></li>
+                </ul>
+            </div>
+            <div class="opacity">
+                <h2>空闲时透明度</h2>
+                <div>
+                    <input type="range" max="1" min="0" step="0.1" value="0.2" name="opacity"><label for="opacity">0.1</label>
+                </div>
+            </div>
+            <div class="preview" style="color: #789; opacity: 0.4">&#58880;</div>
+        </div>
+        <div id="advanced">
+            <h2>排除网址</h2>
+            <p>在列表的这些网站中不会显示 Scroll To Top 按钮，URL 支持正则表达式和通配符</p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; <a href="http://www.AlphaTr.com/">AlphaTr.com</a></p>
+    </footer>
+</div>
+</body>
+</html>

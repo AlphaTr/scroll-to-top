@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+    background: #F1F1F1;
+}
+@font-face {
+    font-family: "alpha-sttb";
+    src:url("../lib/alpha-sttb.woff") format("woff"),
+        url("../lib/alpha-sttb.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+    overflow: hidden;
+}
+
+.clearfix {
+    /* Fix IE8 */
+    zoom: 1;
+}
+
+.wrap {
+    margin: 0 auto;
+    width: 640px;
+}
+
+#doc-hd {
+    height: 60px;
+    background-color: #FAFAFA;
+    border-bottom: 1px solid #EEE;
+}
+#doc-hd h1 {
+    float: left;
+    font-size: 20px;
+    line-height: 60px;
+    height: 60px;
+    margin: 0;
+    color: #789;
+    font-weight: normal;
+}
+#doc-hd .logo {
+    float: left;
+    height: 32px;
+    width: 32px;
+    margin: 14px 10px 14px 0;
+    font-size: 32px;
+    color: #789;
+    line-height: 32px;
+    font-family: 'alpha-sttb';
+    border-radius: 4px;
+    overflow: hidden;
+}
+#doc-hd .logo:before {
+    content: '\e600';
+}
+#doc-hd nav {
+    float: right;
+    font-size: 14px;
+    line-height: 40px;
+    height: 40px;
+    margin: 20px 0 0 0;
+}
+#doc-hd nav a {
+    color: #666;
+    margin-left: 10px;
+    text-decoration: none;
+}
+#doc-hd nav a:hover {
+    color: #333;
+}
+#doc-bd {
+    margin-top: 20px;
+}
+#base {
+    position: relative;
+    margin: 0 50px;
+    border: 1px solid #DDD;
+    background-color: #FFF;
+    border-radius: 4px;
+    padding: 29px;
+}
+#base h2 {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+}
+#base .pos {
+    float: left;
+    width: 240px;
+    text-align: center;
+}
+#base .pos table {
+    margin: 0 auto;
+}
+#base .pos table td.cell {
+    border: 2px solid #BBB;
+    background-color: #F3F3F3;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+}
+#base .pos table td.cell-on {
+    border-color: #789;
+    font-family: 'alpha-sttb';
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    color: #678;
+}
+#base .pos table td.cell-on:after {
+    content: '\e601';
+}
+
+#base .color {
+    float: right;
+    width: 240px;
+    text-align: center;
+}
+#base .color table {
+    border-collapse: collapse;
+    margin: 30px auto;
+}
+#base .color table tr, #base .color table td {
+    border: 2px solid #AAA;
+}
+#base .color table td {
+    width: 32px;
+    height: 32px;
+}
+
+#base .type {
+    clear: both;
+}
+#base .type ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+#base .type li {
+    float: left;
+    list-style-type: none;
+    width: 56px;
+    height: 56px;
+    margin: 0 20px 0 0;
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#base .type li:hover {
+    background: #F5F5F5;
+}
+#base .type li.on {
+    background: #E6E6E6;
+}
+#base .type li span {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 12px;
+    line-height: 32px;
+    font-size: 32px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 4px;
+    color: #789;
+    font-family: 'alpha-sttb';
+}
+#base .type .type1:after {
+    content: '\e600';
+}
+#base .type .type2:after {
+    display: block;
+    font-size: 20px;
+    content: '\e601';
+}
+#base .type .type3:after {
+    content: '\e602';
+}
+#base .opacity input {
+    display: inline-block;
+    margin: 5px 20px;
+    height: 21px;
+    width: 180px;
+    vertical-align: middle;
+}
+#base .opacity label {
+    display: inline-block;
+    width: 20px;
+    margin: 5px 0 5px -6px;
+    vertical-align: middle;
+}
+#base .preview {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 54px;
+    height: 54px;
+    font-size: 54px;
+    line-height: 54px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 4px;
+    font-family: 'alpha-sttb';
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+    cursor: pointer;
+    -webkit-transition-duration: .4s
+}
+#base .preview:hover {
+    opacity: .9 !important;
+}
+
+#advanced {
+    display: none;
+}
+
+footer p {
+    text-align: center;
+    margin: 20px 0;
+    color: #666;
+    font-size: 12px;
+}
+footer p a {
+    color: #888;
+}

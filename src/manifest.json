@@ -30,6 +30,6 @@
     },
     "options_page": "options/index.html",
     "web_accessible_resources": [
-        "page/alpha-sttb.*"
+        "lib/alpha-sttb.*"
     ]
 }

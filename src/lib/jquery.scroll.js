@@ -13,9 +13,13 @@
                     ease: "swing",
                     start: 0,
                     transparency: 0,
-                    distance: $(window).height()
+                    distance: 0
                 },
-                _ = this;
+                _ = this,
+                winH = $(window).height(),
+                docH = $(document).height();
+
+            defaults.distance = Math.min(winH, (docH - winH) / 2);
 
             this.inProgress = false;
             this.el = el;

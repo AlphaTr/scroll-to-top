@@ -5,7 +5,7 @@
         var getURL = chrome.runtime.getURL,
             fontFace = (function () {
                 var style = '@font-face {font-family: "alpha-sttb"; src:url("{$url}.woff") format("woff"), url("{$url}.ttf") format("truetype"); font-weight: normal; font-style: normal;}';
-                return style.replace(/\{\$url\}/ig, getURL('page/alpha-sttb'));
+                return style.replace(/\{\$url\}/ig, getURL('lib/alpha-sttb'));
             }()),
             position = {
                 'tl': 'top: 20px; left: 20px;',
