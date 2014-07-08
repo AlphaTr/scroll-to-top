@@ -15,7 +15,7 @@ var runtime = chrome.runtime,
 
 messageSender('get-base').then(function (baseOpt) {
     var initColor = function () {
-            $('#base .color .td').each(function () {
+            $('#base .color td').each(function () {
                 var $this = $(this),
                     color = $this.data('color');
                 $this.css('background', color);
@@ -45,9 +45,9 @@ messageSender('get-base').then(function (baseOpt) {
     });
 
     $('#base .color td').on('click', function () {
-        $('#base .color td').removeClass('cell-on');
-        var key = $(this).addClass('cell-on').data('key');
-        baseOpt.pos = key;
+        $('#base .color td').removeClass('on');
+        var color = $(this).addClass('on').data('color');
+        baseOpt.color = color;
         setOpt();
     });
 
