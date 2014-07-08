@@ -33,6 +33,7 @@
             case "get" :
                 if (sender.tab && sender.tab.id) {
                     options.get().then(function (argu) {
+                        console.log(argu);
                         chrome.tabs.insertCSS(sender.tab.id, {code: style(argu), allFrames: true}, function () {
                             sendResponse({
                                 action: 'render',
@@ -45,8 +46,12 @@
                 break;
             case "get-base" :
                 options.get().then(function (argu) {
-                    console.log(argu);
                     sendResponse(argu);
+                });
+                break;
+            case "set-base" :
+                options.set(request.params[0]).then(function () {
+                    sendResponse(request.params[0]);
                 });
                 break;
             }

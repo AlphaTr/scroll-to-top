@@ -16,8 +16,8 @@ var options = (function () {
                 deferred.resolve(opt);
             } else {
                 storage.get(OPT_KEY, function (o) {
-                    o = $.extend({}, defaultOpt, o || {});
-                    deferred.resolve(o);
+                    var opt = $.extend({}, defaultOpt, o[OPT_KEY] || {});
+                    deferred.resolve(opt);
                 });
             }
             return deferred.promise();

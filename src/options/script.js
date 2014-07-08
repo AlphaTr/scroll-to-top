@@ -25,7 +25,8 @@ messageSender('get-base').then(function (baseOpt) {
             initColor();
         },
         render = function (opt) {
-            $('#base .preview').css({color: opt.color, opacity: opt.opacity});
+            var types = ['&#58880;', '&#58881;', '&#58882;'];
+            $('#base .preview').css({color: opt.color, opacity: opt.opacity}).html(types[opt.type]);
         },
         setOpt = function () {
             messageSender('set-base', baseOpt).then(function (opt) {
@@ -35,13 +36,16 @@ messageSender('get-base').then(function (baseOpt) {
 
     $('#base .pos td').on('click', function () {
         $('#base .pos td').removeClass('cell-on');
-        var key = $(this).addClass('cell-on').data('key');
+        var key = $(this).addClass('cell-on').data('key'),
+            title = $(this).attr('title');
+
+        $('#base .pos p span').html(title);
         baseOpt.pos = key;
         setOpt();
     });
 
     $('#base .color td').on('click', function () {
-        $('#base .pos td').removeClass('cell-on');
+        $('#base .color td').removeClass('cell-on');
         var key = $(this).addClass('cell-on').data('key');
         baseOpt.pos = key;
         setOpt();
@@ -50,11 +54,15 @@ messageSender('get-base').then(function (baseOpt) {
     $('#base .type li').on('click', function () {
         $('#base .type li').removeClass('on');
         $(this).addClass('on');
+        baseOpt.type = $(this).index();
         setOpt();
     });
 
     $('#base .opacity input').on('change, input', function () {
-        $('#base .opacity label').html(parseFloat($(this).val(), 10).toFixed(1));
+        var opacity = parseFloat($(this).val(), 10).toFixed(1);
+        $('#base .opacity label').html(opacity);
+        baseOpt.opacity = opacity;
+        setOpt();
     });
 
     init();
