@@ -101,15 +101,15 @@ body {
     height: 28px;
     cursor: pointer;
 }
-#base .pos table td.cell-on {
+#base .pos table td.on {
     border-color: #789;
     font-family: 'alpha-sttb';
-    font-size: 20px;
+    font-size: 28px;
     line-height: 28px;
     text-align: center;
     color: #678;
 }
-#base .pos table td.cell-on:after {
+#base .pos table td.on:after {
     content: '\e601';
 }
 
@@ -123,14 +123,15 @@ body {
     margin: 14px auto;
 }
 #base .color table tr, #base .color table td {
-    border: 1px solid #555;
+    border: 0;
 }
 #base .color table td {
     width: 32px;
     height: 32px;
+    box-shadow: inset 0 0 0 3px #FFF;
 }
 #base .color table td.on {
-    box-shadow: inset 0 0 0 2px #FFF;
+    box-shadow: none;
 }
 
 #base .type {
@@ -173,8 +174,6 @@ body {
     content: '\e600';
 }
 #base .type .type2:after {
-    display: block;
-    font-size: 20px;
     content: '\e601';
 }
 #base .type .type3:after {
@@ -204,11 +203,15 @@ body {
     text-align: center;
     overflow: hidden;
     border-radius: 4px;
-    font-family: 'alpha-sttb';
+    font-family: alpha-sttb;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
     -webkit-user-select: none;
     -webkit-font-smoothing: antialiased;
     cursor: pointer;
-    -webkit-transition-duration: .4s
+    -webkit-transition-duration: .4s;
 }
 #base .preview:hover {
     opacity: .9 !important;

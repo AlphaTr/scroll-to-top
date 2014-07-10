@@ -23,19 +23,19 @@
                 <h2>按钮位置</h2>
                 <table cellspacing="4"><tbody>
                     <tr>
-                        <td class="cell cell-on" title="左上角" data-key="tl"></td>
-                        <td class="cell" title="顶部中间" data-key="tc"></td>
-                        <td class="cell" title="右上角" data-key="tr"></td>
+                        <td class="cell" data-pos="tl" title="左上角"></td>
+                        <td class="cell" data-pos="tc" title="顶部中间"></td>
+                        <td class="cell" data-pos="tr" title="右上角"></td>
                     </tr>
                     <tr>
-                        <td class="cell" title="中间左侧" data-key="ml"></td>
+                        <td class="cell" data-pos="ml" title="中间左侧"></td>
                         <td></td>
-                        <td class="cell" title="中间右侧" data-key="mr"></td>
+                        <td class="cell" data-pos="mr" title="中间右侧"></td>
                     </tr>
                     <tr>
-                        <td class="cell" title="左下角" data-key="bl"></td>
-                        <td class="cell" title="底部中间" data-key="bc"></td>
-                        <td class="cell" title="右下角" data-key="br"></td>
+                        <td class="cell" data-pos="bl" title="左下角"></td>
+                        <td class="cell" data-pos="bc" title="底部中间"></td>
+                        <td class="cell" data-pos="br" title="右下角"></td>
                     </tr>
                 </tbody></table>
                 <p>显示在窗口：<span>右下角</span></p>
@@ -44,32 +44,31 @@
                 <h2>按钮颜色</h2>
                 <table><tbody>
                     <tr>
-                        <td data-color="#FAC300"></td>
-                        <td data-color="#8B6CA6"></td>
+                        <td data-color="#3B5998"></td>
+                        <td data-color="#AA1520"></td>
+                        <td data-color="#019600"></td>
+                        <td data-color="#E85A90"></td>
+                    </tr>
+                    <tr>
+                        <td data-color="#643EA0"></td>
+                        <td data-color="#2C72C7"></td>
+                        <td data-color="#FF6600"></td>
+                        <td data-color="#1E8CBE"></td>
+                    </tr>
+                    <tr>
                         <td data-color="#666666"></td>
+                        <td data-color="#E82A37"></td>
                         <td data-color="#6D8AA5"></td>
-                    </tr>
-                    <tr>
-                        <td data-color="#FFF853"></td>
-                        <td data-color="#E95F5F"></td>
-                        <td data-color="#66E45F"></td>
-                        <td data-color="#F8C5FF"></td>
-                    </tr>
-                    <tr>
-                        <td data-color="#5F99E4"></td>
-                        <td data-color="#E95F5F"></td>
-                        <td data-color="#66E45F"></td>
-                        <td data-color="#F8C5FF"></td>
+                        <td data-color="#FAC300"></td>
                     </tr>
                 </tbody></table>
-                <p>自定义颜色：<input type="color"/><span></span></p>
             </div>
             <div class="type">
                 <h2>按钮样式</h2>
                 <ul class="clearfix">
-                    <li class="on"><span class="type1"></span></li>
-                    <li><span class="type2"></span></li>
-                    <li><span class="type3"></span></li>
+                    <li data-type="0" class="on"><span class="type1"></span></li>
+                    <li data-type="1"><span class="type2"></span></li>
+                    <li data-type="2"><span class="type3"></span></li>
                 </ul>
             </div>
             <div class="opacity">

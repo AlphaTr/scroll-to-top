@@ -14,15 +14,57 @@ var runtime = chrome.runtime,
     };
 
 messageSender('get-base').then(function (baseOpt) {
-    var initColor = function () {
-            $('#base .color td').each(function () {
-                var $this = $(this),
-                    color = $this.data('color');
-                $this.css('background', color);
-            });
-        },
-        init = function () {
-            initColor();
+    var init = function () {
+            var init = function (item) {
+                    $(item.selector).each(function () {
+                        var $this = $(this),
+                            key = $this.data(item.key);
+
+                        if (key === baseOpt[item.key]) {
+                            $this.addClass('on');
+                        }
+
+                        if (item.key === 'color') {
+                            $this.css('background', key);
+                        }
+                    }).on('click', function () {
+                        $(item.selector).removeClass('on');
+
+                        var key = $(this).addClass('on').data(item.key),
+                            title = $(this).attr('title');
+
+                        baseOpt[item.key] = key;
+
+                        if (item.key === 'pos') {
+                            $('#base .pos p span').html(title);
+                        }
+
+                        setOpt();
+                    });
+                },
+                initOpacity = function () {
+                    var setOpacity = function (val) {
+                            var opacity = parseFloat(val, 10).toFixed(1);
+                            $('#base .opacity label').html(opacity);
+                            $('#base .opacity input').val(opacity);
+                            baseOpt.opacity = opacity;
+                        };
+
+                    $('#base .opacity input').on('change, input', function () {
+                        setOpacity($(this).val());
+                        setOpt();
+                    });
+
+                    setOpacity(baseOpt.opacity);
+                };
+
+            [
+                {selector: '#base .pos td.cell', key: 'pos'},
+                {selector: '#base .color td', key: 'color'},
+                {selector: '#base .type li', key: 'type'}
+            ].forEach(init);
+            initOpacity();
+            setOpt();
         },
         render = function (opt) {
             var types = ['&#58880;', '&#58881;', '&#58882;'];
@@ -33,38 +75,6 @@ messageSender('get-base').then(function (baseOpt) {
                 render(opt);
             });
         };
-
-    $('#base .pos td').on('click', function () {
-        $('#base .pos td').removeClass('cell-on');
-        var key = $(this).addClass('cell-on').data('key'),
-            title = $(this).attr('title');
-
-        $('#base .pos p span').html(title);
-        baseOpt.pos = key;
-        setOpt();
-    });
-
-    $('#base .color td').on('click', function () {
-        $('#base .color td').removeClass('on');
-        var color = $(this).addClass('on').data('color');
-        baseOpt.color = color;
-        setOpt();
-    });
-
-    $('#base .type li').on('click', function () {
-        $('#base .type li').removeClass('on');
-        $(this).addClass('on');
-        baseOpt.type = $(this).index();
-        setOpt();
-    });
-
-    $('#base .opacity input').on('change, input', function () {
-        var opacity = parseFloat($(this).val(), 10).toFixed(1);
-        $('#base .opacity label').html(opacity);
-        baseOpt.opacity = opacity;
-        setOpt();
-    });
-
     init();
 });
 
