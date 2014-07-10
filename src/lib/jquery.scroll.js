@@ -17,7 +17,7 @@
                 },
                 _ = this,
                 winH = $(window).height(),
-                docH = $(document).height();
+                docH = document.documentElement.scrollHeight;
 
             defaults.distance = Math.min(winH, (docH - winH) / 2);
 
