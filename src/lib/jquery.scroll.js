@@ -13,13 +13,8 @@
                     ease: "swing",
                     start: 0,
                     transparency: 0,
-                    distance: 0
                 },
-                _ = this,
-                winH = $(window).height(),
-                docH = document.documentElement.scrollHeight;
-
-            defaults.distance = Math.min(winH, (docH - winH) / 2);
+                _ = this;
 
             this.inProgress = false;
             this.el = el;
@@ -40,7 +35,7 @@
             var _ = this,
                 $e = $(_.el);
 
-            _.direction = _.rotate($e, _.opt.distance);
+            _.direction = _.rotate();
 
             if ($win.scrollTop() >= _.opt.start) {
                 $e.addClass("fade");
@@ -77,7 +72,7 @@
                 $e.removeClass("fade");
             }
 
-            _.direction = _.rotate($e, o.distance);
+            _.direction = _.rotate();
         },
         scrollUp: function () {
             var _ = this;
@@ -93,8 +88,12 @@
             });
         },
         rotate: function () {
-            var _ = this;
-            if ($win.scrollTop() >= _.opt.distance) {
+            var _ = this,
+                winH = $(window).height(),
+                docH = document.documentElement.scrollHeight,
+                distance = Math.min(winH, (docH - winH) / 2);
+
+            if ($win.scrollTop() >= distance) {
                 $(_.el).addClass('rotate');
                 return "up";
             } else {
